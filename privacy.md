@@ -1,8 +1,3 @@
----
-layout: page
-title: Privacy Policy
----
-
 # Privacy Policy
 **Stella Fuel Buddy**
 
