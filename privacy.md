@@ -15,4 +15,4 @@ This app does not use third-party analytics, advertising networks, or tracking t
 We do not share data with anyone, because no data is collected.
 
 ## Contact
-Questions? Email **you@example.com** or open an issue on the GitHub repo.
+Questions? Open an issue on the GitHub repo.
