@@ -1,16 +1,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var lm   = LocationManager()
-    @StateObject private var log  = RideLogStore()
+    // Singletons wired to your existing classes
+    @StateObject private var lm   = LocationManager.shared
+    @StateObject private var log  = RideLog.shared
     @StateObject private var fuel = FuelStore()
 
+    // UI state
     @State private var rideStartTime: Date?
     @State private var showSettings = false
 
-    // MARK: - Computed
+    // MARK: - Computed values
     private var sinceFill: Double {
-        log.milesSinceFill + (lm.isTracking ? lm.milesThisRide : 0)
+        log.milesSinceFill + (lm.isTracking ? lm.distanceSinceStartMiles : 0)
     }
     private var totalRange: Double { fuel.totalRangeMiles }
     private var milesLeft: Double { max(0, totalRange - sinceFill) }
@@ -21,7 +23,8 @@ struct ContentView: View {
         return .red
     }
     private var fractionFull: Double {
-        totalRange > 0 ? max(0, min(1, (totalRange - sinceFill) / totalRange)) : 0
+        guard totalRange > 0 else { return 0 }
+        return max(0, min(1, (totalRange - sinceFill) / totalRange))
     }
 
     var body: some View {
@@ -29,28 +32,29 @@ struct ContentView: View {
             ScrollView {
                 VStack(spacing: 16) {
 
-                    // Miles-left + gauge
+                    // Big miles-left readout
                     VStack(spacing: 6) {
                         Text("Miles left")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                         Text(String(format: "%.0f", milesLeft))
-                            .font(.system(size: 112, weight: .bold, design: .rounded))
+                            .font(.system(size: 126, weight: .bold, design: .rounded))
                             .foregroundStyle(statusColor)
                     }
 
+                    // Scooter-style half-circle gauge
                     ScooterFuelGauge(
                         fraction: fractionFull,
                         warnFrac: fuel.settings.warnAtMiles / max(1, totalRange),
                         dangerFrac: fuel.settings.dangerAtMiles / max(1, totalRange),
                         showZones: false,
-                        showTrack: false     // 👈 hides the gray half-circle
+                        showTrack: false
                     )
 
-                    // Status details
+                    // Status
                     GroupBox("Status") {
                         VStack(alignment: .leading, spacing: 8) {
-                            row("Miles this ride",  String(format: "%.1f", lm.milesThisRide))
+                            row("Miles this ride",  String(format: "%.1f", lm.distanceSinceStartMiles))
                             row("Miles since fill", String(format: "%.1f", sinceFill))
                             row("Total range",      String(format: "%.0f mi", totalRange))
                             row("State",            stateText(for: sinceFill), boldRight: true)
@@ -60,13 +64,7 @@ struct ContentView: View {
                     // Controls
                     HStack(spacing: 12) {
                         Button(lm.isTracking ? "Stop Ride" : "Start Ride") {
-                            if lm.isTracking {
-                                stopAndLogRide()
-                            } else {
-                                lm.requestAuthorization()
-                                rideStartTime = Date()
-                                lm.startRide()
-                            }
+                            if lm.isTracking { stopAndLogRide() } else { startRide() }
                         }
                         .buttonStyle(.borderedProminent)
 
@@ -77,47 +75,83 @@ struct ContentView: View {
                         .buttonStyle(.bordered)
                     }
 
-                    // Recent rides
+                    // Recent rides (no List inside ScrollView)
                     GroupBox("Recent Rides") {
-                        if log.rides.isEmpty {
+                        let lastTen = Array(log.rides.suffix(10)).reversed()
+                        if lastTen.isEmpty {
                             Text("No rides yet").foregroundStyle(.secondary)
                         } else {
-                            List(log.rides.reversed().prefix(10)) { ride in
-                                HStack {
-                                    VStack(alignment: .leading, spacing: 4) {
-                                        Text(String(format: "%.1f mi", ride.miles))
-                                            .font(.headline)
-                                        Text("\(ride.start.formatted(.dateTime.month().day().hour().minute())) → \(ride.end.formatted(.dateTime.hour().minute()))")
-                                            .font(.subheadline)
-                                            .foregroundStyle(.secondary)
+                            VStack(alignment: .leading, spacing: 10) {
+                                ForEach(lastTen) { ride in
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            Text(String(format: "%.1f mi", ride.distanceMiles))
+                                                .font(.headline)
+                                            Text(ride.date.formatted(.dateTime.month().day().hour().minute()))
+                                                .font(.subheadline)
+                                                .foregroundStyle(.secondary)
+                                        }
+                                        Spacer()
                                     }
-                                    Spacer()
+                                    .padding(.vertical, 4)
                                 }
                             }
-                            .frame(maxHeight: 260)
                         }
                     }
                 }
                 .padding()
             }
-            .navigationTitle("Stella Fuel Buddy")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.inline) // centers on iPhone
             .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Stella Fuel Buddy")
+                        .font(.headline.bold())
+                }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        showSettings = true
-                    } label: {
-                        Image(systemName: "gearshape")
-                    }
+                    Button { showSettings = true } label: { Image(systemName: "gearshape") }
                 }
             }
             .sheet(isPresented: $showSettings) {
                 SettingsView(fuel: fuel)
             }
         }
+        // App Intents listener (NFC Shortcut triggers)
+        .onReceive(NotificationCenter.default.publisher(for: RideCommandCenter.shared.notificationName)) { note in
+            guard let cmd = note.object as? RideCommandCenter.Command else { return }
+            switch cmd {
+            case .startRide:
+                if !lm.isTracking { startRide() }
+            case .stopRide:
+                if lm.isTracking { stopAndLogRide() }
+            case .fillUp:
+                if lm.isTracking { stopAndLogRide() }
+                log.resetSinceFill()
+            }
+        }
     }
 
-    // MARK: - Helpers
+    // MARK: - Actions
+
+    private func startRide() {
+        lm.requestAuthorization()
+        rideStartTime = Date()
+        lm.startRide()
+    }
+
+    private func stopAndLogRide() {
+        lm.stopRide()
+        let end = Date()
+        let start = rideStartTime ?? end
+        let miles = lm.distanceSinceStartMiles
+
+        // Always log a ride (even 0.0 mi helps verify wiring)
+        let entry = RideEntry(date: start, distanceMiles: miles)
+        log.addRide(entry)
+
+        rideStartTime = nil
+    }
+
+    // MARK: - UI helpers
 
     private func row(_ left: String, _ right: String, boldRight: Bool = false) -> some View {
         HStack {
@@ -133,15 +167,9 @@ struct ContentView: View {
         if miles < fuel.settings.dangerAtMiles { return "Expect reserve soon" }
         return "On reserve — fuel up"
     }
-
-    private func stopAndLogRide() {
-        lm.stopRide()
-        let end = Date()
-        let start = rideStartTime ?? end
-        let ride = Ride(start: start, end: end, miles: lm.milesThisRide)
-        log.addRide(ride)
-    }
 }
 
-#Preview { ContentView() }
+#Preview {
+    ContentView()
+}
 

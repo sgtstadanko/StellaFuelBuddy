@@ -1,24 +1,33 @@
 import Foundation
+import Combine
 
-struct Ride: Codable, Identifiable {
-    var id = UUID()
-    var start: Date
-    var end: Date
-    var miles: Double
+struct RideEntry: Identifiable, Codable {
+    let id: UUID
+    let date: Date
+    let distanceMiles: Double
+
+    init(id: UUID = UUID(), date: Date, distanceMiles: Double) {
+        self.id = id
+        self.date = date
+        self.distanceMiles = distanceMiles
+    }
 }
 
-final class RideLogStore: ObservableObject {
-    @Published private(set) var rides: [Ride] = []
-    @Published var milesSinceFill: Double = 0         // running total since last fill
+final class RideLog: ObservableObject {
+    static let shared = RideLog()
 
-    private let ridesKey = "rideLog.rides"
-    private let sinceFillKey = "rideLog.milesSinceFill"
+    @Published private(set) var rides: [RideEntry] = []
+    @Published private(set) var milesSinceFill: Double = 0.0
 
-    init() { load() }
+    private let ridesKey = "rideLog.rides.v1"
+    private let sinceFillKey = "rideLog.milesSinceFill.v1"
 
-    func addRide(_ ride: Ride) {
+    private init() { load() }
+
+    // MARK: Actions
+    func addRide(_ ride: RideEntry) {
         rides.append(ride)
-        milesSinceFill += ride.miles
+        milesSinceFill += ride.distanceMiles
         save()
     }
 
@@ -27,6 +36,7 @@ final class RideLogStore: ObservableObject {
         save()
     }
 
+    // MARK: Persistence
     private func save() {
         if let data = try? JSONEncoder().encode(rides) {
             UserDefaults.standard.set(data, forKey: ridesKey)
@@ -36,9 +46,10 @@ final class RideLogStore: ObservableObject {
 
     private func load() {
         if let data = UserDefaults.standard.data(forKey: ridesKey),
-           let decoded = try? JSONDecoder().decode([Ride].self, from: data) {
+           let decoded = try? JSONDecoder().decode([RideEntry].self, from: data) {
             rides = decoded
         }
         milesSinceFill = UserDefaults.standard.double(forKey: sinceFillKey)
     }
 }
+
