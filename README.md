@@ -20,19 +20,15 @@ Instead of stressing over a dead sender or speedo, StellaFuelBuddy tracks your *
 
 ---
 
+## Support StellaFuelBuddy
+If you’ve found this useful, you can fuel my scooter fund here:  
+[PayPal](https://paypal.me/scooterfunds) · [Venmo](https://venmo.com/Bill-Bradley-70)
+
+
 ## Installation
-Right now this is an **Xcode project** — you’ll need a Mac + Xcode:
+Right now this is an **Xcode project** or a download from the AppStore. To build yourself, you’ll need a Mac + Xcode:
 
 ```bash
 git clone https://github.com/sgtstadanko/StellaFuelBuddy.git
 cd StellaFuelBuddy
 open StellaFuelBuddy.xcodeproj
-``
-Or Install from the App Store
-
----
-
-## Support StellaFuelBuddy
-If you’ve found this useful, you can fuel my scooter fund here:  
-[PayPal](https://paypal.me/scooterfunds) · [Venmo](https://venmo.com/Bill-Bradley-70)
-
