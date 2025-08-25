@@ -27,3 +27,7 @@ Right now this is an **Xcode project** — you’ll need a Mac + Xcode:
 git clone https://github.com/sgtstadanko/StellaFuelBuddy.git
 cd StellaFuelBuddy
 open StellaFuelBuddy.xcodeproj
+
+Or Install from the App Store
+
+
