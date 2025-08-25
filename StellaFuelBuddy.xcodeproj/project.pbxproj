@@ -6,8 +6,42 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B9D45E0F2E57DF58003A6F92 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9D45E0E2E57DF58003A6F92 /* WidgetKit.framework */; };
+		B9D45E112E57DF58003A6F92 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9D45E102E57DF58003A6F92 /* SwiftUI.framework */; };
+		B9D45E202E57DF59003A6F92 /* StellaFuelBuddyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B9D45E0C2E57DF58003A6F92 /* StellaFuelBuddyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B9D45E1E2E57DF59003A6F92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9CABC6D2E53E69F0039E6F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B9D45E0B2E57DF58003A6F92;
+			remoteInfo = StellaFuelBuddyWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B9D45E252E57DF59003A6F92 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B9D45E202E57DF59003A6F92 /* StellaFuelBuddyWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		B9CABC752E53E69F0039E6F3 /* StellaFuelBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StellaFuelBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9D45E0C2E57DF58003A6F92 /* StellaFuelBuddyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StellaFuelBuddyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9D45E0E2E57DF58003A6F92 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		B9D45E102E57DF58003A6F92 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		B9D45E262E57DF70003A6F92 /* StellaFuelBuddyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StellaFuelBuddyWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -18,6 +52,28 @@
 			);
 			target = B9CABC742E53E69F0039E6F3 /* StellaFuelBuddy */;
 		};
+		B9D45E242E57DF59003A6F92 /* Exceptions for "StellaFuelBuddyWidget" folder in "StellaFuelBuddyWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B9D45E0B2E57DF58003A6F92 /* StellaFuelBuddyWidgetExtension */;
+		};
+		B9D45E2A2E57E013003A6F92 /* Exceptions for "StellaFuelBuddy" folder in "StellaFuelBuddyWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ScooterFuelGuage.swift,
+				SharedStore.swift,
+			);
+			target = B9D45E0B2E57DF58003A6F92 /* StellaFuelBuddyWidgetExtension */;
+		};
+		B9D45E312E5815D4003A6F92 /* Exceptions for "StellaFuelBuddyWidget" folder in "StellaFuelBuddy" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FuelEntry.swift,
+			);
+			target = B9CABC742E53E69F0039E6F3 /* StellaFuelBuddy */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -25,8 +81,18 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				B9CABC8D2E53EA200039E6F3 /* Exceptions for "StellaFuelBuddy" folder in "StellaFuelBuddy" target */,
+				B9D45E2A2E57E013003A6F92 /* Exceptions for "StellaFuelBuddy" folder in "StellaFuelBuddyWidgetExtension" target */,
 			);
 			path = StellaFuelBuddy;
+			sourceTree = "<group>";
+		};
+		B9D45E122E57DF58003A6F92 /* StellaFuelBuddyWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B9D45E312E5815D4003A6F92 /* Exceptions for "StellaFuelBuddyWidget" folder in "StellaFuelBuddy" target */,
+				B9D45E242E57DF59003A6F92 /* Exceptions for "StellaFuelBuddyWidget" folder in "StellaFuelBuddyWidgetExtension" target */,
+			);
+			path = StellaFuelBuddyWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -39,13 +105,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9D45E092E57DF58003A6F92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9D45E112E57DF58003A6F92 /* SwiftUI.framework in Frameworks */,
+				B9D45E0F2E57DF58003A6F92 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		B9CABC6C2E53E69F0039E6F3 = {
 			isa = PBXGroup;
 			children = (
+				B9D45E262E57DF70003A6F92 /* StellaFuelBuddyWidgetExtension.entitlements */,
 				B9CABC772E53E69F0039E6F3 /* StellaFuelBuddy */,
+				B9D45E122E57DF58003A6F92 /* StellaFuelBuddyWidget */,
+				B9D45E0D2E57DF58003A6F92 /* Frameworks */,
 				B9CABC762E53E69F0039E6F3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,8 +132,18 @@
 			isa = PBXGroup;
 			children = (
 				B9CABC752E53E69F0039E6F3 /* StellaFuelBuddy.app */,
+				B9D45E0C2E57DF58003A6F92 /* StellaFuelBuddyWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B9D45E0D2E57DF58003A6F92 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B9D45E0E2E57DF58003A6F92 /* WidgetKit.framework */,
+				B9D45E102E57DF58003A6F92 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -68,10 +156,12 @@
 				B9CABC712E53E69F0039E6F3 /* Sources */,
 				B9CABC722E53E69F0039E6F3 /* Frameworks */,
 				B9CABC732E53E69F0039E6F3 /* Resources */,
+				B9D45E252E57DF59003A6F92 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B9D45E1F2E57DF59003A6F92 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				B9CABC772E53E69F0039E6F3 /* StellaFuelBuddy */,
@@ -82,6 +172,28 @@
 			productName = StellaFuelBuddy;
 			productReference = B9CABC752E53E69F0039E6F3 /* StellaFuelBuddy.app */;
 			productType = "com.apple.product-type.application";
+		};
+		B9D45E0B2E57DF58003A6F92 /* StellaFuelBuddyWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9D45E212E57DF59003A6F92 /* Build configuration list for PBXNativeTarget "StellaFuelBuddyWidgetExtension" */;
+			buildPhases = (
+				B9D45E082E57DF58003A6F92 /* Sources */,
+				B9D45E092E57DF58003A6F92 /* Frameworks */,
+				B9D45E0A2E57DF58003A6F92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B9D45E122E57DF58003A6F92 /* StellaFuelBuddyWidget */,
+			);
+			name = StellaFuelBuddyWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = StellaFuelBuddyWidgetExtension;
+			productReference = B9D45E0C2E57DF58003A6F92 /* StellaFuelBuddyWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -94,6 +206,9 @@
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					B9CABC742E53E69F0039E6F3 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					B9D45E0B2E57DF58003A6F92 = {
 						CreatedOnToolsVersion = 16.4;
 					};
 				};
@@ -113,12 +228,20 @@
 			projectRoot = "";
 			targets = (
 				B9CABC742E53E69F0039E6F3 /* StellaFuelBuddy */,
+				B9D45E0B2E57DF58003A6F92 /* StellaFuelBuddyWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B9CABC732E53E69F0039E6F3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9D45E0A2E57DF58003A6F92 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,7 +258,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B9D45E082E57DF58003A6F92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B9D45E1F2E57DF59003A6F92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B9D45E0B2E57DF58003A6F92 /* StellaFuelBuddyWidgetExtension */;
+			targetProxy = B9D45E1E2E57DF59003A6F92 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B9CABC7E2E53E6A10039E6F3 /* Debug */ = {
@@ -265,8 +403,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = StellaFuelBuddy/StellaFuelBuddy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3K955FKWS8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -276,7 +415,6 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -285,9 +423,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Test.StellaFuelBuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -297,8 +439,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = StellaFuelBuddy/StellaFuelBuddy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 3K955FKWS8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -308,7 +451,6 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -317,9 +459,77 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Test.StellaFuelBuddy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		B9D45E222E57DF59003A6F92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = StellaFuelBuddyWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = 3K955FKWS8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StellaFuelBuddyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StellaFuelBuddyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Test.StellaFuelBuddy.StellaFuelBuddyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		B9D45E232E57DF59003A6F92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = StellaFuelBuddyWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = 3K955FKWS8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StellaFuelBuddyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = StellaFuelBuddyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Test.StellaFuelBuddy.StellaFuelBuddyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -340,6 +550,15 @@
 			buildConfigurations = (
 				B9CABC812E53E6A10039E6F3 /* Debug */,
 				B9CABC822E53E6A10039E6F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9D45E212E57DF59003A6F92 /* Build configuration list for PBXNativeTarget "StellaFuelBuddyWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9D45E222E57DF59003A6F92 /* Debug */,
+				B9D45E232E57DF59003A6F92 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
