@@ -30,4 +30,9 @@ open StellaFuelBuddy.xcodeproj
 
 Or Install from the App Store
 
+---
+
+## Support StellaFuelBuddy
+If you’ve found this useful, you can fuel my scooter fund here:  
+[PayPal](https://paypal.me/scooterfunds) · [Venmo](https://venmo.com/Bill-Bradley-70)
 
